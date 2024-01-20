@@ -6,9 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const config_json_1 = __importDefault(require("../config/config.json"));
 class MoarAmmoConfig {
     postDBLoad(container) {
+        if (!config_json_1.default.enable)
+            return;
         const databaseServer = container.resolve("DatabaseServer");
         const tables = databaseServer.getTables();
         if (config_json_1.default?.weaponRecoilModifier !== 1) {
+            console.log(`MoarAmmoConfig - Adjusting recoil to a rate of ${config_json_1.default?.weaponRecoilModifier * 100}% of vanilla values.`);
             tables.templates.items;
             for (const item in tables.templates.items) {
                 if (tables.templates.items[item]._props.ItemSound == "mod") {
@@ -21,6 +24,8 @@ class MoarAmmoConfig {
                 }
             }
         }
+        if (!config_json_1.default.enableBulletChanges)
+            return;
         const adjustableValueList = [
             {
                 name: "Damage",
@@ -72,3 +77,4 @@ class MoarAmmoConfig {
     }
 }
 module.exports = { mod: new MoarAmmoConfig() };
+//# sourceMappingURL=mod.js.map

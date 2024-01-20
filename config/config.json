@@ -1,15 +1,15 @@
 {
-    "weaponRecoilModifier": 0.8,
-
+    "enable": true,
+    "weaponRecoilModifier": 0.7,
+    "enableBulletChanges": false,
     "BulletChanges": {
         "Damage": 1,
         "ammoRec": 0.5,
-        "ammoAccr": 0.8,
+        "ammoAccr": 1,
         "PenetrationPower": 1,
         "FragmentationChance": 1,
         "InitialSpeed": 1,
-        "SpeedRetardation": 0.7
+        "SpeedRetardation": 1
     },
-
-    "debug": false 
+    "debug": false
 }

@@ -8,11 +8,11 @@ import config from "../config/config.json"
 class MoarAmmoConfig implements IPostDBLoadMod {
 
     public postDBLoad(container: DependencyContainer): void {
+        if (!config.enable) return;
         const databaseServer = container.resolve<DatabaseServer>("DatabaseServer");
         const tables = databaseServer.getTables();
-
-
         if (config?.weaponRecoilModifier !== 1) {
+            console.log(`MoarAmmoConfig - Adjusting recoil to ${config?.weaponRecoilModifier * 100}% of vanilla values.`)
             tables.templates.items
             for (const item in tables.templates.items) {
                 if (tables.templates.items[item]._props.ItemSound == "mod") {
@@ -26,7 +26,7 @@ class MoarAmmoConfig implements IPostDBLoadMod {
             }
         }
 
-
+        if (!config.enableBulletChanges) return;
         const adjustableValueList =
             [
                 {
